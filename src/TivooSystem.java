@@ -18,6 +18,7 @@ import parser.NFLParser;
 import parser.Parser;
 import parser.TVParser;
 import view.Publisher;
+import calendar.CalendarFilter;
 import calendar.XMLCal;
 import event.Event;
 
@@ -26,7 +27,7 @@ public class TivooSystem {
 //	public final static String[] files = {"resources/dukecal.xml", "resources/googlecal.xml"};
 	public final static String[] files = {"resources/dbbcal.xml", "resources/nflcal.xml"};
 	public final static Calendar before = new GregorianCalendar(2011, 8, 12);
-	public final static Calendar after = new GregorianCalendar(2011, 11, 17);
+	public final static Calendar after = new GregorianCalendar(2011, 10, 17);
 
 	public XMLCal parse(String[] files) {
 		ArrayList<Event> events = new ArrayList<Event>();
@@ -72,11 +73,11 @@ public class TivooSystem {
 		TivooSystem s = new TivooSystem();
 		XMLCal calendar = s.parse(files);
 		
-//		calendar.filter(XMLCal.FilterType.actor, new String[]{"Nicole Kidman"});
-//		calendar.sort(XMLCal.SortType.start, true);
+		CalendarFilter filter = new CalendarFilter(calendar);
+		filter.filterDay(before);
 		
 		Publisher publisher = new Publisher(calendar);
-		publisher.publishConflicts();
+		publisher.publish();
 	}
 
 }
