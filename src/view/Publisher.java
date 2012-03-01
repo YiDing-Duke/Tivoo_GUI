@@ -4,8 +4,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.security.NoSuchAlgorithmException;
-import java.text.ParseException;
-import java.util.Calendar;
 
 import calendar.XMLCal;
 
@@ -23,13 +21,6 @@ public class Publisher {
 	}
 
 	public void publish() throws IOException, NoSuchAlgorithmException {
-		publishSummary();
-		for (Event event : events.getEvents())
-			publishEvent(event);
-	}
-
-	public void publishOrdered() throws IOException, NoSuchAlgorithmException {
-		events.sort(XMLCal.SortType.start, false);
 		publishSummary();
 		for (Event event : events.getEvents())
 			publishEvent(event);
@@ -61,18 +52,6 @@ public class Publisher {
 				+ html.getPageTitle() + ".html"));
 		out.print(document.write());
 		out.close();
-	}
-
-	public void publishCalendar(XMLCal.CalendarType type, Calendar start)
-			throws ParseException, NoSuchAlgorithmException, IOException {
-		events.filter(type, start);
-		publishOrdered();
-	}
-
-	public void publishConflicts()
-			throws ParseException, NoSuchAlgorithmException, IOException {
-		events.getConflicts();
-		publishOrdered();
 	}
 
 }

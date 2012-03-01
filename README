@@ -1,0 +1,7 @@
+Team: Yi Ding, Kirill Klimuk, Leo Rofe, Matthew Tse, and Chenbo Zhu
+
+Project: Tivoo
+
+Description: The main method is in the TivooSystem class. The user inputs one or multiple XML calendars and TivooSystem parses them. There is a parser factory that checks to see what type of calendar was inputted (ex. GoogleCal or DukeCal). The parser factory then builds the appropriate calendar.  Each parser has its own method for parsing and once it has parsed the calendar the TivooSystem parse method returns a new XMLCal. This XMLCal has a list of the parsed events. The user than has the option to filter and/or sort the events (ex. by Title or by Date). The XMLCal, which now contains a list of filtered/sorted events, is passed to the publisher.  Again the user has a few options of how the events are published. You will find a HTML file called "summary" in the resource folder. Also in the resource folder is a folder called "details" which contains each individual event.
+
+Reminder: Make sure there is a folder named "details" in the "resource" folder or else the program will not run properly. 
