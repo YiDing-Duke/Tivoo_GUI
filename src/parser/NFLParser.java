@@ -36,6 +36,7 @@ public class NFLParser extends Parser {
 
 		private final String nflRoot = "document";
 
+	    // checks to see what type of calendar
 		public boolean isType(Element root) {
 
 			return root.getName().equals(nflRoot);

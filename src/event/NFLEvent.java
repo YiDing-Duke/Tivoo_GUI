@@ -9,6 +9,8 @@ import org.dom4j.Element;
 
 public class NFLEvent extends Event {
 	public NFLEvent(Element event) throws ParseException {
+		// sets title, time, description etc. of event
+
 		setTitle(event.elementText("Col1"));
 		setDescription(event.elementText("Col15"));
 		setStart(parseTime(event, "Col8"));

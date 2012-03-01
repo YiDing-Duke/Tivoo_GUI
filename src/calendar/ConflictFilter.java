@@ -10,6 +10,7 @@ public class ConflictFilter extends Filter{
 		super(calendar);
 	}
 	
+	//filters by conflict
 	public void filterConflicts() {
 		ArrayList<Event> filtration = new ArrayList<Event>();
 

@@ -13,6 +13,7 @@ public class KeywordFilter extends Filter{
 		public boolean call(String filter, Event event);
 	}
 	
+	
 	private void filter(String[] filters, FilterCommander contains) {
 		ArrayList<Event> filtration = new ArrayList<Event>();
 		for (Event event : getCalendar().getEvents())
@@ -22,6 +23,7 @@ public class KeywordFilter extends Filter{
 		getCalendar().setEvents(filtration);
 	}
 	
+	//filters by title
 	public void filterTitle(String[] filters) {
 		filter(filters, new FilterCommander() {
 			public boolean call(String filter, Event event) {
@@ -30,6 +32,7 @@ public class KeywordFilter extends Filter{
 		});
 	}
 	
+	//filters by description
 	public void filterDescription(String[] filters) {
 		filter(filters, new FilterCommander() {
 			public boolean call(String filter, Event event) {
@@ -38,6 +41,7 @@ public class KeywordFilter extends Filter{
 		});
 	}
 	
+	//filters by author
 	public void filterAuthor(String[] filters) {
 		filter(filters, new FilterCommander() {
 			public boolean call(String filter, Event event) {

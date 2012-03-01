@@ -13,59 +13,61 @@ import org.dom4j.Element;
 
 public class GoogleEvent extends Event {
 
-    public GoogleEvent(Element event) throws ParseException {
-        setTitle(event.elementText("title"));
-        parseTime(event);
-        setDescription(event.elementText("summary"));
-        setLink(event.element("link").attributeValue("href"));
-        setAuthor(event.element("author").elementText("name"));
-    }
+	public GoogleEvent(Element event) throws ParseException {
+		// sets title, time, description etc. of event
 
-    private void parseTime(Element event) throws ParseException {
-        Pattern time = Pattern.compile("When:\\s(.*?)\\sto\\s(.*)");
-        Matcher matcher = time.matcher(event.element("content").getText());
-        if (matcher.find()) {
-            Calendar start = new GregorianCalendar();
-            Calendar end = new GregorianCalendar();
-            Calendar temp = new GregorianCalendar();
+		setTitle(event.elementText("title"));
+		parseTime(event);
+		setDescription(event.elementText("summary"));
+		setLink(event.element("link").attributeValue("href"));
+		setAuthor(event.element("author").elementText("name"));
+	}
 
-            DateFormat group1 = new SimpleDateFormat("EEE MMM dd, yyyy hh:mmaa");
-            DateFormat group2 = new SimpleDateFormat("hh:mmaa");
+	private void parseTime(Element event) throws ParseException {
+		Pattern time = Pattern.compile("When:\\s(.*?)\\sto\\s(.*)");
+		Matcher matcher = time.matcher(event.element("content").getText());
+		if (matcher.find()) {
+			Calendar start = new GregorianCalendar();
+			Calendar end = new GregorianCalendar();
+			Calendar temp = new GregorianCalendar();
 
-            String startTimeString = matcher.group(1);
-            startTimeString = fixTimeFormat(startTimeString);
-            start.setTime((group1.parse(startTimeString)));
+			DateFormat group1 = new SimpleDateFormat("EEE MMM dd, yyyy hh:mmaa");
+			DateFormat group2 = new SimpleDateFormat("hh:mmaa");
 
-            end.setTime(start.getTime());
-            String endTimeString = matcher.group(2);
-            endTimeString = endTimeString.substring(0,
-                    endTimeString.length() - 1);
+			String startTimeString = matcher.group(1);
+			startTimeString = fixTimeFormat(startTimeString);
+			start.setTime((group1.parse(startTimeString)));
 
-            endTimeString = fixTimeFormat(endTimeString);
-            temp.setTime((group2.parse(endTimeString)));
+			end.setTime(start.getTime());
+			String endTimeString = matcher.group(2);
+			endTimeString = endTimeString.substring(0,
+					endTimeString.length() - 1);
 
-            end.set(Calendar.HOUR, temp.get(Calendar.HOUR));
-            end.set(Calendar.MINUTE, temp.get(Calendar.MINUTE));
+			endTimeString = fixTimeFormat(endTimeString);
+			temp.setTime((group2.parse(endTimeString)));
 
-            setStart(start);
-            setEnd(end);
-        } else {
-            Calendar calendar = new GregorianCalendar();
-            calendar.setTime(new Date());
-            setStart(calendar);
-            setEnd(calendar);
-        }
-    }
+			end.set(Calendar.HOUR, temp.get(Calendar.HOUR));
+			end.set(Calendar.MINUTE, temp.get(Calendar.MINUTE));
 
-    private String fixTimeFormat(String startString) {
-        StringBuffer dateStringBuffer = new StringBuffer(startString);
-        int dateStringLength = dateStringBuffer.length();
+			setStart(start);
+			setEnd(end);
+		} else {
+			Calendar calendar = new GregorianCalendar();
+			calendar.setTime(new Date());
+			setStart(calendar);
+			setEnd(calendar);
+		}
+	}
 
-        if (dateStringLength < 5
-                || dateStringBuffer.charAt(dateStringLength - 5) != ':') { 
-            dateStringBuffer.insert(dateStringLength - 2, ":00");
-            startString = dateStringBuffer.toString();
-        }
-        return startString;
-    }
+	private String fixTimeFormat(String startString) {
+		StringBuffer dateStringBuffer = new StringBuffer(startString);
+		int dateStringLength = dateStringBuffer.length();
+
+		if (dateStringLength < 5
+				|| dateStringBuffer.charAt(dateStringLength - 5) != ':') {
+			dateStringBuffer.insert(dateStringLength - 2, ":00");
+			startString = dateStringBuffer.toString();
+		}
+		return startString;
+	}
 }

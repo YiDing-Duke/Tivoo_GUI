@@ -36,6 +36,7 @@ public class GoogleParser extends Parser {
 
 		private final String googRoot = "feed";
 
+	    // checks to see what type of calendar
 		public boolean isType(Element root) {
 
 			return root.getName().equals(googRoot);

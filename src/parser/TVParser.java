@@ -34,6 +34,7 @@ public class TVParser extends Parser{
 
         private final String tvRoot = "tv";
 
+        // checks to see what type of calendar
         public boolean isType(Element root) {
 
             return root.getName().equals(tvRoot);
