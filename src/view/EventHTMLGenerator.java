@@ -14,7 +14,7 @@ import com.hp.gagawa.java.elements.P;
 import event.Event;
 
 public class EventHTMLGenerator {
-
+    private static final String dayOfWeekFormat = "%1$tB %1$te, %1$tY";
 	public Event event;
 
 	public EventHTMLGenerator(Event event) {
@@ -51,7 +51,7 @@ public class EventHTMLGenerator {
 	}
 	
 	private H2 dayOfWeek() {
-		return new H2().appendText(String.format("%1$tB %1$te, %1$tY",
+		return new H2().appendText(String.format(dayOfWeekFormat,
 				event.getStart()));
 	}
 

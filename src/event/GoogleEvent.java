@@ -12,15 +12,20 @@ import java.util.regex.Pattern;
 import org.dom4j.Element;
 
 public class GoogleEvent extends Event {
-
+    private static final String title = "title";
+    private static final String dateFormatOne = "EEE MMM dd, yyyy hh:mmaa";
+    private static final String dateFormatTwo = "hh:mmaa";
+    private static final String description = "summary";
+    private static final String link = "href";
+    private static final String author = "name";
 	public GoogleEvent(Element event) throws ParseException {
 		// sets title, time, description etc. of event
 
-		setTitle(event.elementText("title"));
+		setTitle(event.elementText(title));
 		parseTime(event);
-		setDescription(event.elementText("summary"));
-		setLink(event.element("link").attributeValue("href"));
-		setAuthor(event.element("author").elementText("name"));
+		setDescription(event.elementText(description));
+		setLink(event.element("link").attributeValue(link));
+		setAuthor(event.element("author").elementText(author));
 	}
 
 	private void parseTime(Element event) throws ParseException {
@@ -31,8 +36,8 @@ public class GoogleEvent extends Event {
 			Calendar end = new GregorianCalendar();
 			Calendar temp = new GregorianCalendar();
 
-			DateFormat group1 = new SimpleDateFormat("EEE MMM dd, yyyy hh:mmaa");
-			DateFormat group2 = new SimpleDateFormat("hh:mmaa");
+			DateFormat group1 = new SimpleDateFormat(dateFormatOne);
+			DateFormat group2 = new SimpleDateFormat(dateFormatTwo);
 
 			String startTimeString = matcher.group(1);
 			startTimeString = fixTimeFormat(startTimeString);

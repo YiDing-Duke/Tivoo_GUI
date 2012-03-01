@@ -10,6 +10,11 @@ import java.util.List;
 import org.dom4j.Element;
 
 public class TVEvent extends Event {
+    private static final String title = "title";
+    private static final String descriptionString = "desc";
+    private static final String dateFormat = "yyyyMMddHHmmss";
+    private static final String startTimeString = "start"; 
+    private static final String endTimeString = "end";
 	private ArrayList<String> actors;
 
 	public ArrayList<String> getActors() {
@@ -19,10 +24,10 @@ public class TVEvent extends Event {
 	public TVEvent(Element event) throws ParseException {
 		// sets title, time, description etc. of event
 
-		setTitle(event.elementText("title"));
-		setDescription(event.elementText("desc"));
-		setStart(parseTime(event, "start"));
-		setEnd(parseTime(event, "stop"));
+		setTitle(event.elementText(title));
+		setDescription(event.elementText(descriptionString));
+		setStart(parseTime(event, startTimeString));
+		setEnd(parseTime(event, endTimeString));
 		setActors(event);
 	}
 
@@ -44,7 +49,7 @@ public class TVEvent extends Event {
 			throws ParseException {
 		Calendar result = new GregorianCalendar();
 		String start = event.attributeValue(element);
-		result.setTime(new SimpleDateFormat("yyyyMMddHHmmss").parse(start));
+		result.setTime(new SimpleDateFormat(dateFormat).parse(start));
 
 		return result;
 	}
