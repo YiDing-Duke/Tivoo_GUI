@@ -16,28 +16,24 @@ public class Sorter {
 		return calendar;
 	}
 
-	// sorts by title
-	public void sortByTitle(boolean reverse) {
+	// reverses the sort
+	public void reverse() {
+		Collections.reverse(calendar.getEvents());
+	}
 
+	// sorts by title
+	public void sortByTitle() {
 		Collections.sort(calendar.getEvents(), Event.byTitle);
-		if (reverse)
-			Collections.reverse(calendar.getEvents());
 	}
 
 	// sort by start of event
-	public void sortStart(boolean reverse) {
-
+	public void sortStart() {
 		Collections.sort(calendar.getEvents(), Event.byStart);
-		if (reverse)
-			Collections.reverse(calendar.getEvents());
 	}
 
 	// sort by end of event
-	public void sortByEnd(boolean reverse) {
-
+	public void sortByEnd() {
 		Collections.sort(calendar.getEvents(), Event.byEnd);
-		if (reverse)
-			Collections.reverse(calendar.getEvents());
 	}
 
 }

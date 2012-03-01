@@ -6,7 +6,7 @@ import java.util.Calendar;
 
 import event.Event;
 
-public class TimeFilter extends Filter {
+public abstract class TimeFilter extends Filter {
 
 	public TimeFilter(XMLCal calendar) {
 		super(calendar);
