@@ -14,6 +14,8 @@ import com.hp.gagawa.java.elements.Div;
 import event.Event;
 
 public class Publisher {
+    private static final String summaryFileLocation = "resources/summary.html";
+    private static final String detailsFileLocation = "resources/details/";
 	private XMLCal events;
 
 	public Publisher(XMLCal calendar) {
@@ -45,7 +47,7 @@ public class Publisher {
 		}
 
 		PrintWriter out = new PrintWriter(new FileWriter(
-				"resources/summary.html"));
+				summaryFileLocation));
 		out.print(document.write());
 		out.close();
 	}
@@ -55,7 +57,7 @@ public class Publisher {
 		EventHTMLGenerator html = new EventHTMLGenerator(event);
 		Div document = html.getEvent();
 
-		PrintWriter out = new PrintWriter(new FileWriter("resources/details/"
+		PrintWriter out = new PrintWriter(new FileWriter(detailsFileLocation
 				+ html.getPageTitle() + ".html"));
 		out.print(document.write());
 		out.close();
