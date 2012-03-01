@@ -10,6 +10,7 @@ public class CalendarFilter extends TimeFilter {
 		super(calendar);
 	}
 	
+	//filters by day
 	public void filterDay(Calendar start) throws ParseException {
 		Calendar end = new GregorianCalendar();
 		Calendar newstart = new GregorianCalendar();
@@ -24,6 +25,7 @@ public class CalendarFilter extends TimeFilter {
 		filterTime(newstart, end);
 	}
 	
+	//filters by week
 	public void filterWeek(Calendar start) throws ParseException {
 		Calendar end = new GregorianCalendar();
 		Calendar newstart = new GregorianCalendar();
@@ -39,6 +41,7 @@ public class CalendarFilter extends TimeFilter {
 		filterTime(newstart, end);
 	}
 	
+	//filters by month
 	public void filterMonth(Calendar start) throws ParseException {
 		Calendar end = new GregorianCalendar();
 		Calendar newstart = new GregorianCalendar();

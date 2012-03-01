@@ -23,7 +23,7 @@ public class Publisher {
 		for (Event event : events.getEvents())
 			publishEvent(event);
 	}
-
+	// publishes summary into resources folder
 	public void publishSummary() throws IOException, NoSuchAlgorithmException {
 		Div document = new Div();
 
@@ -41,6 +41,7 @@ public class Publisher {
 		out.close();
 	}
 
+	// publishes individual events into "details" folder
 	public void publishEvent(Event event) throws NoSuchAlgorithmException,
 			IOException {
 		EventHTMLGenerator html = new EventHTMLGenerator(event);

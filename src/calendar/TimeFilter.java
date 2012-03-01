@@ -11,8 +11,10 @@ public class TimeFilter extends Filter {
 	public TimeFilter(XMLCal calendar) {
 		super(calendar);
 	}
-	
-	public void filterTime(Calendar before, Calendar after) throws ParseException {
+
+	// filter by time frame
+	public void filterTime(Calendar before, Calendar after)
+			throws ParseException {
 		ArrayList<Event> filtration = new ArrayList<Event>();
 
 		for (Event event : getCalendar().getEvents()) {

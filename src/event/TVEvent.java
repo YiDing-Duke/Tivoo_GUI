@@ -17,6 +17,8 @@ public class TVEvent extends Event {
 	}
 
 	public TVEvent(Element event) throws ParseException {
+		// sets title, time, description etc. of event
+
 		setTitle(event.elementText("title"));
 		setDescription(event.elementText("desc"));
 		setStart(parseTime(event, "start"));
@@ -28,7 +30,8 @@ public class TVEvent extends Event {
 		ArrayList<String> actors = new ArrayList<String>();
 		if (event.element("credits") != null) {
 			if (event.element("credits").elements("actor") != null) {
-				List<Element> elements = event.element("credits").elements("actor");
+				List<Element> elements = event.element("credits").elements(
+						"actor");
 				for (Element element : elements) {
 					actors.add(element.getText());
 				}

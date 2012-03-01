@@ -34,6 +34,7 @@ public class BasketballParser extends Parser{
 
         private final String dukebballRoot = "dataroot";
 
+       // checks to see what type of calendar
         public boolean isType(Element root) {
 
             return root.getName().equals(dukebballRoot);

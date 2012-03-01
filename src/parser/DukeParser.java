@@ -34,6 +34,7 @@ public class DukeParser extends Parser {
 
 		private final String dukeRoot = "events";
 
+	    // checks to see what type of calendar
 		public boolean isType(Element root) {
 			return root.getName().equals(dukeRoot);
 		}

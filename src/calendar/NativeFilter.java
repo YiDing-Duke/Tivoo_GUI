@@ -11,6 +11,7 @@ public class NativeFilter extends Filter{
 		super(calendar);
 	}
 	
+	//filters by actor
 	public void filterActor(String[] filters) {
 		ArrayList<Event> filtration = new ArrayList<Event>();
 		
