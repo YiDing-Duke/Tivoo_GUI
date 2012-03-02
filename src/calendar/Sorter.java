@@ -27,7 +27,7 @@ public class Sorter {
 	}
 
 	// sort by start of event
-	public void sortStart() {
+	public void sortByStart() {
 		Collections.sort(calendar.getEvents(), Event.byStart);
 	}
 
